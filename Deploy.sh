@@ -7,14 +7,14 @@ DOCKERHUB_REPO="$DOCKERHUB_USERNAME/$IMAGE_NAME"
 
 # Step 1: Create the Dockerfile
 cat <<EOL > Dockerfile
-# Use an official Nginx image as the base image
 FROM nginx:alpine
 
 # Create the required directories and set permissions
 RUN mkdir -p /var/cache/nginx/client_temp && \
-    chmod -R 777 /var/cache/nginx
+    chown -R nginx:nginx /var/cache/nginx && \
+    chmod -R 755 /var/cache/nginx
 
-# Copy the HTML file and images to the Nginx web server directory
+# Copy your application files
 COPY index.html /usr/share/nginx/html/
 COPY 1.jpg /usr/share/nginx/html/
 COPY 2.jpg /usr/share/nginx/html/
