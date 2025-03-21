@@ -10,6 +10,10 @@ cat <<EOL > Dockerfile
 # Use an official Nginx image as the base image
 FROM nginx:alpine
 
+# Create the required directories and set permissions
+RUN mkdir -p /var/cache/nginx/client_temp && \
+    chmod -R 777 /var/cache/nginx
+
 # Copy the HTML file and images to the Nginx web server directory
 COPY index.html /usr/share/nginx/html/
 COPY 1.jpg /usr/share/nginx/html/
