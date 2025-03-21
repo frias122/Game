@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: romantic-game
+  namespace: babayagaaws-dev
+  labels:
+    app: romantic-game
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: romantic-game
+  template:
+    metadata:
+      labels:
+        app: romantic-game
+    spec:
+      containers:
+      - name: romantic-game
+        image: babayagaaws/romantic-game
+        ports:
+        - containerPort: 8080
