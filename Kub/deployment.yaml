@@ -19,6 +19,6 @@ spec:
         runAsUser: 0  # Run as root
       containers:
       - name: romantic-game
-        image: your-dockerhub-username/romantic-game
+        image: babayagaaws/romantic-game
         ports:
         - containerPort: 8080
