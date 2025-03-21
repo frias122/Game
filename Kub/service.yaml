@@ -12,4 +12,8 @@ spec:
   - protocol: TCP
     port: 80       # External port (used by the Service)
     targetPort: 8080  # Internal port (used by the container)
-  type: NodePort
+  #type: NodePort
+  type: ClusterIP # Default type
+
+
+  
