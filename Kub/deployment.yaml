@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
       - name: romantic-game
-        image: romantic-game:latest
+        image: romantic-game:latest  # Use the local Docker image
         ports:
-        - containerPort: 8080
+        - containerPort: 8080  # Ensure this matches your app's port
