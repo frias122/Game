@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
       - name: romantic-game
-        image: romantic-game
+        image: romantic-game:latest
         ports:
         - containerPort: 8080
