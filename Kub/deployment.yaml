@@ -22,11 +22,3 @@ spec:
         image: babayagaaws/romantic-game
         ports:
         - containerPort: 8080
-        volumeMounts:
-        - name: nginx-config
-          mountPath: /etc/nginx/nginx.conf
-          subPath: nginx.conf
-      volumes:
-      - name: nginx-config
-        configMap:
-          name: romantic-game-nginx
