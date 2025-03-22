@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
       - name: romantic-game
-        image: babayagaaws/romantic-game:latest  # Use the Docker Hub image
+        image: babayagaaws/romantic-game:latest  # Use your Docker image
         ports:
-        - containerPort: 80
+        - containerPort: 8080  # Ensure this matches your app's port

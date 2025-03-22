@@ -7,22 +7,25 @@ DOCKERHUB_REPO="$DOCKERHUB_USERNAME/$IMAGE_NAME"
 
 # Step 1: Create the Dockerfile
 cat <<EOL > Dockerfile
-# Use the official Nginx image as the base
-FROM nginx:alpine
+# Use a base image (e.g., Python, Node.js, or a minimal Linux image)
+FROM python:3.9-slim
 
-# Copy your custom Nginx configuration file into the container
-COPY /home/ubuntu/Kub/Game/Kub/default.conf /etc/nginx/conf.d/default.conf
+# Set the working directory
+WORKDIR /app
 
-# Copy static files into the container
-COPY /home/ubuntu/Kub/Game/index.html /usr/share/nginx/html/index.html
-COPY /home/ubuntu/Kub/Game/1.jpg /usr/share/nginx/html/1.jpg
-COPY /home/ubuntu/Kub/Game/2.jpg /usr/share/nginx/html/2.jpg
+# Copy the application files into the container
+COPY /home/ubuntu/Kub/Game/index.html /app/index.html
+COPY /home/ubuntu/Kub/Game/1.jpg /app/1.jpg
+COPY /home/ubuntu/Kub/Game/2.jpg /app/2.jpg
 
-# Expose port 80
-EXPOSE 80
+# Install a simple HTTP server (if needed)
+RUN pip install http.server
 
-# Start Nginx when the container launches
-CMD ["nginx", "-g", "daemon off;"]
+# Expose the port your application listens on
+EXPOSE 8080
+
+# Command to run your application
+CMD ["python", "-m", "http.server", "8080"]
 EOL
 
 echo "Dockerfile created successfully."
