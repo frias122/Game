@@ -9,6 +9,8 @@ DOCKERHUB_REPO="$DOCKERHUB_USERNAME/$IMAGE_NAME"
 cat <<EOL > Dockerfile
 FROM nginx:alpine
 
+USER root
+
 # Create the required directories and set permissions
 RUN mkdir -p /var/cache/nginx/client_temp && \
     chown -R nginx:nginx /var/cache/nginx && \
