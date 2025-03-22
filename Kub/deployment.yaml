@@ -19,4 +19,8 @@ spec:
       - name: romantic-game
         image: babayagaaws/romantic-game
         ports:
-        - containerPort: 8080
+        - containerPort: 80  # Change this to 80 if you want to bind to port 80
+        securityContext:
+          capabilities:
+            add: ["NET_BIND_SERVICE"]  # Add the NET_BIND_SERVICE capability
+          runAsUser: 1000  # Run as a non-root user (replace 1000 with the desired UID)
