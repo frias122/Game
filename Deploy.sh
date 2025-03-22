@@ -7,24 +7,21 @@ DOCKERHUB_REPO="$DOCKERHUB_USERNAME/$IMAGE_NAME"
 
 # Step 1: Create the Dockerfile
 cat <<EOL > Dockerfile
+# Use the official Nginx image as the base
 FROM nginx:alpine
 
-USER root
+# Copy your custom Nginx configuration file into the container
+COPY /home/ubuntu/Kub/Game/Kub/default.conf /etc/nginx/conf.d/default.conf
 
-# Create the required directories and set permissions
-RUN mkdir -p /var/cache/nginx/client_temp && \
-    chown -R nginx:nginx /var/cache/nginx && \
-    chmod -R 755 /var/cache/nginx
+# Copy static files into the container
+COPY /home/ubuntu/Kub/Game/index.html /usr/share/nginx/html/index.html
+COPY /home/ubuntu/Kub/Game/1.jpg /usr/share/nginx/html/1.jpg
+COPY /home/ubuntu/Kub/Game/2.jpg /usr/share/nginx/html/2.jpg
 
-# Copy your application files
-COPY index.html /usr/share/nginx/html/
-COPY 1.jpg /usr/share/nginx/html/
-COPY 2.jpg /usr/share/nginx/html/
-
-# Expose port 80 (the default port for HTTP)
+# Expose port 80
 EXPOSE 80
 
-# Start Nginx when the container runs
+# Start Nginx when the container launches
 CMD ["nginx", "-g", "daemon off;"]
 EOL
 

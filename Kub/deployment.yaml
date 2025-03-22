@@ -17,16 +17,6 @@ spec:
     spec:
       containers:
       - name: romantic-game
-        image: babayagaaws/romantic-game
+        image: babayagaaws/romantic-game:latest  # Use the Docker Hub image
         ports:
         - containerPort: 80
-        securityContext:
-          capabilities:
-            add: ["NET_BIND_SERVICE"]
-          runAsUser: 1000  # Replace with the UID of the non-root user
-        volumeMounts:
-        - name: nginx-config
-          mountPath: /etc/nginx/conf.d
-      volumes:
-      - name: nginx-config
-        emptyDir: {}
