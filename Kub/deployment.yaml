@@ -2,9 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: joel-trisha-web-page
-  namespace: babayagaaws-dev
 spec:
-  replicas: 4
+  replicas: 3
   selector:
     matchLabels:
       app: joel-trisha-web-page
@@ -18,4 +17,3 @@ spec:
         image: babayagaaws/joel-trisha-web-page:latest
         ports:
         - containerPort: 8080
-          hostPort: 8080  # Bind to port 8080 on the host
