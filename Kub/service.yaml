@@ -1,15 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: romantic-game
-  namespace: babayagaaws-dev
-  labels:
-    app: romantic-game
+  name: joel-trisha-web-page-service
 spec:
   selector:
-    app: romantic-game
+    app: joel-trisha-web-page
   ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 8080
-  type: NodePort
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080

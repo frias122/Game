@@ -1,22 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: romantic-game
-  namespace: babayagaaws-dev
-  labels:
-    app: romantic-game
+  name: joel-trisha-web-page
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: romantic-game
+      app: joel-trisha-web-page
   template:
     metadata:
       labels:
-        app: romantic-game
+        app: joel-trisha-web-page
     spec:
       containers:
-      - name: romantic-game
-        image: romantic-game:latest  # Use the local Docker image
+      - name: joel-trisha-web-page
+        image: babayagaaws/joel-trisha-web-page:latest
         ports:
-        - containerPort: 8080  # Ensure this matches your app's port
+        - containerPort: 8080

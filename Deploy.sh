@@ -1,25 +1,22 @@
 #!/bin/bash
 
 # Variables
-IMAGE_NAME="romantic-game"
+IMAGE_NAME="joel-trisha-web-page"
 DOCKERHUB_USERNAME="babayagaaws"  # Replace with your Docker Hub username
 DOCKERHUB_REPO="$DOCKERHUB_USERNAME/$IMAGE_NAME"
 
 # Step 1: Create the Dockerfile
 cat <<EOL > Dockerfile
 # Use a base image (e.g., Python, Node.js, or a minimal Linux image)
-FROM python:3.9-slim
+FROM python:3.9
 
 # Set the working directory
 WORKDIR /app
 
 # Copy the application files into the container
-COPY /home/ubuntu/Kub/Game/index.html /app/index.html
-COPY /home/ubuntu/Kub/Game/1.jpg /app/1.jpg
-COPY /home/ubuntu/Kub/Game/2.jpg /app/2.jpg
-
-# Install a simple HTTP server (if needed)
-RUN pip install http.server
+COPY index.html /app/index.html
+COPY 1.jpg /app/1.jpg
+COPY 2.jpg /app/2.jpg
 
 # Expose the port your application listens on
 EXPOSE 8080
