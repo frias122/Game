@@ -4,12 +4,11 @@ metadata:
   name: joel-trisha-web-page-service
   namespace: babayagaaws-dev
 spec:
+  type: ClusterIP  # Default type (internal traffic only)
   selector:
     app: joel-trisha-web-page
   ports:
-    - port: 8080        # Cluster-internal port (accessible via other pods)
-      targetPort: 8080  # Pod port (where your app runs)
-      nodePort: 30777   # External port (must be 30000-32767)
+    - port: 8080       # Cluster-internal port (other pods use this)
+      targetPort: 8080 # Pod port (where your app runs)
       protocol: TCP
       name: http
-  type: NodePort
