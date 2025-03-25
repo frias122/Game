@@ -9,7 +9,7 @@ spec:
   ports:
     - port: 8080        # Cluster-internal port (accessible via other pods)
       targetPort: 8080  # Pod port (where your app runs)
-      nodePort: 30080   # External port (must be 30000-32767)
+      nodePort: 30777   # External port (must be 30000-32767)
       protocol: TCP
       name: http
   type: NodePort
