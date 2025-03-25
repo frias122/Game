@@ -44,6 +44,30 @@
             color: #c8e6c9;
         }
 
+        .save-date-btn {
+            margin-top: 20px;
+            padding: 12px 30px;
+            font-size: 1.2rem;
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+            font-family: 'Georgia', serif;
+        }
+
+        .save-date-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+            background: linear-gradient(45deg, #ff8e8e, #ff6b6b);
+        }
+
+        .save-date-btn:active {
+            transform: translateY(1px);
+        }
+
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -118,6 +142,7 @@
     <div class="love-message">
         <h1>I LOVE YOU TRISHA</h1>
         <p>You are the light of my life, like the sun shining through the trees.</p>
+        <button class="save-date-btn" onclick="window.location.href='countdown.html'">Save the Date ❤️</button>
     </div>
 
     <!-- Plants -->
