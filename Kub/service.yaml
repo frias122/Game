@@ -7,7 +7,9 @@ spec:
   selector:
     app: joel-trisha-web-page
   ports:
-    - protocol: TCP
-      port: 8080  # Port exposed by the service
-      targetPort: 8080  # Port exposed by the container
+  - port: 8080        # Service port (cluster-internal)
+    targetPort: 8080  # Pod port (where your app runs)
+    nodePort: 8080    # External port (must be 30000-32767 if not changed)
+    protocol: TCP
+    name: http
   type: NodePort  # Exposes the service on a port on each node
