@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: joel-trisha-web-page
+  namespace: babayagaaws-dev
 spec:
   replicas: 3
   selector:
@@ -13,7 +14,8 @@ spec:
         app: joel-trisha-web-page
     spec:
       containers:
-      - name: joel-trisha-web-page
-        image: babayagaaws/joel-trisha-web-page:latest
+      - name: web-app
+        image: babayagaaws/joel-trisha-web-page:latest  # Updated image
         ports:
         - containerPort: 8080
+        imagePullPolicy: Always  # Force Kubernetes to pull the latest image
