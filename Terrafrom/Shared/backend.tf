@@ -1,6 +1,6 @@
 terraform {
   backend "s3" {
-    bucket         = "my-terraform-state-bucket"
+    bucket         = "babayagaaws"
     key            = "terraform.tfstate"  # Will be overridden per workspace
     region         = "us-west-2"         # Must match your bucket's actual region
     encrypt        = true
