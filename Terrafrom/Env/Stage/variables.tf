@@ -1,17 +1,7 @@
-variable "instance_groups" {
-  description = "Groups of instances to be created"
-  type = map(object({
-    ami           = string
-    instance_type = string
-    count         = number
-  }))
-  default = {
-    web = {
-      ami           = "ami-0755803bcc58ae721"
-      instance_type = "t2.micro"
-      count         = 2
-    }
-  }
+variable "region" {
+  description = "AWS region"
+  type        = string
+  default     = "us-west-2"
 }
 
 variable "vpc_cidr" {
@@ -43,5 +33,23 @@ variable "tags" {
   type        = map(string)
   default     = {
     "Name" = "MyInstance"
+  }
+}
+
+variable "instance_type" {
+  description = "EC2 instance type"
+  type        = string
+  default     = "t2.micro"
+}
+
+variable "instance_groups" {
+  description = "Groups of instances to be created"
+  type = map(object({
+    count         = number
+  }))
+  default = {
+    web = {
+      count         = 2
+    }
   }
 }
