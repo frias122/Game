@@ -1,12 +1,9 @@
 terraform {
   backend "s3" {
     bucket         = "babayagaaws"
-    key            = "terraform.tfstate"  # Will be overridden per workspace
-    region         = "us-west-2"         # Must match your bucket's actual region
+    key            = "terraform.tfstate"
+    region         = "eu-west-2"
     encrypt        = true
-    
-    # New way to enable state locking
-    dynamodb_endpoint = "https://dynamodb.us-west-2.amazonaws.com"
-    use_lockfile      = true
+    dynamodb_table = "terraform-locks"
   }
 }
