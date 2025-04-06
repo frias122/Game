@@ -1,7 +1,7 @@
 variable "region" {
   description = "AWS region"
   type        = string
-  default     = "us-west-2"
+  default     = "eu-west-2"  # London region
 }
 
 variable "vpc_cidr" {
@@ -19,20 +19,15 @@ variable "subnet_cidr" {
 variable "availability_zone" {
   description = "The availability zone for the instances"
   type        = string
-  default     = "us-west-2a"
-}
-
-variable "allowed_ssh_cidr" {
-  description = "CIDR block to allow SSH access"
-  type        = string
-  default     = "0.0.0.0/0"
+  default     = "eu-west-2a"
 }
 
 variable "tags" {
   description = "Tags to be applied to resources"
   type        = map(string)
   default     = {
-    "Name" = "MyInstance"
+    "Name"        = "ECE-Instance",
+    "Environment" = "Stage"
   }
 }
 
@@ -45,11 +40,11 @@ variable "instance_type" {
 variable "instance_groups" {
   description = "Groups of instances to be created"
   type = map(object({
-    count         = number
+    count = number
   }))
   default = {
-    web = {
-      count         = 2
+    ece = {
+      count = 2
     }
   }
 }
