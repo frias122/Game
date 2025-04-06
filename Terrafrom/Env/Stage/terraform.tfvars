@@ -12,11 +12,13 @@ instance_groups = {
   }
   php = {
     count         = 2
+    ami           = "ami-0755803bcc58ae721" # Ubuntu 22.04 LTS
     instance_type = "t2.micro"
     role          = "php"
   }
   db = {
     count         = 1
+    ami           = "ami-0755803bcc58ae721" # Ubuntu 22.04 LTS
     instance_type = "t2.medium"
     role          = "db"
   }
