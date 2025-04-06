@@ -44,7 +44,6 @@ resource "aws_security_group" "allow_ssh" {
   })
 }
 
-# Create a flattened list of instances for each group
 locals {
   instances = flatten([
     for group_key, group in var.instance_groups : [
@@ -65,7 +64,7 @@ resource "aws_instance" "group_instances" {
   ami           = each.value.ami
   instance_type = each.value.instance_type
   subnet_id     = aws_subnet.main.id
-  security_groups = [aws_security_group.allow_ssh.id]
+  vpc_security_group_ids = [aws_security_group.allow_ssh.id]
 
   tags = merge(var.tags, {
     "Name" = "instance-${each.value.group_key}-${each.value.instance_id}"
