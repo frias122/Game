@@ -77,10 +77,21 @@ resource "aws_security_group" "allow_ssh" {
 
 # Create EC2 instances for each group
 resource "aws_instance" "group_instances" {
-  for_each = var.instance_groups
+  for_each = {
+    for idx, group in flatten([
+      for group_key, group in var.instance_groups : [
+        for i in range(group.count) : {
+          key     = "${group_key}-${i}"
+          group   = group
+          index   = i
+          role    = group.role
+        }
+      ]
+    ]) : idx.key => idx
+  }
 
-  ami           = each.value.ami
-  instance_type = each.value.instance_type
+  ami           = each.value.group.ami
+  instance_type = each.value.group.instance_type
   subnet_id     = aws_subnet.main.id
   vpc_security_group_ids = [aws_security_group.allow_ssh.id]
   associate_public_ip_address = true
@@ -88,7 +99,7 @@ resource "aws_instance" "group_instances" {
   tags = merge(
     var.tags,
     {
-      Name        = "${var.environment}-${each.value.role}-${count.index + 1}",
+      Name        = "${var.environment}-${each.value.role}-${each.value.index + 1}",
       Environment = var.environment,
       Role        = each.value.role
     }
@@ -98,6 +109,4 @@ resource "aws_instance" "group_instances" {
     http_endpoint = "enabled"
     http_tokens   = "optional"
   }
-
-  count = each.value.count
 }
