@@ -3,11 +3,6 @@ variable "environment" {
   type        = string
 }
 
-variable "aws_region" {
-  description = "AWS region to deploy resources"
-  type        = string
-}
-
 variable "vpc_cidr" {
   description = "CIDR block for the VPC"
   type        = string
@@ -19,7 +14,7 @@ variable "subnet_cidr" {
 }
 
 variable "availability_zone" {
-  description = "Availability zone for the subnet"
+  description = "AWS availability zone for the subnet"
   type        = string
 }
 
@@ -28,17 +23,17 @@ variable "allowed_ssh_cidr" {
   type        = string
 }
 
+variable "tags" {
+  description = "Common tags to apply to all resources"
+  type        = map(string)
+}
+
 variable "instance_groups" {
-  description = "Map of instance groups with their configurations"
+  description = "Instance groups with their AMIs, types, and count"
   type = map(object({
-    count         = number
     ami           = string
     instance_type = string
     role          = string
+    count         = number
   }))
-}
-
-variable "tags" {
-  description = "Common tags for all resources"
-  type        = map(string)
 }
