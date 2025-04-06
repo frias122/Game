@@ -1,40 +1,38 @@
+# Required Variables
 variable "environment" {
-  description = "The deployment environment (stage/prod)"
+  description = "Environment name (stage/prod)"
   type        = string
 }
 
 variable "aws_region" {
-  description = "AWS region to deploy resources"
+  description = "AWS region"
   type        = string
   default     = "eu-west-2"
 }
 
 variable "vpc_cidr" {
-  description = "CIDR block for the VPC"
+  description = "VPC CIDR block"
   type        = string
-  default     = "10.0.0.0/16"
 }
 
 variable "subnet_cidr" {
-  description = "CIDR block for the subnet"
+  description = "Subnet CIDR block"
   type        = string
-  default     = "10.0.1.0/24"
 }
 
 variable "availability_zone" {
-  description = "Availability zone for the subnet"
+  description = "Availability zone"
   type        = string
-  default     = "eu-west-2a"
 }
 
 variable "allowed_ssh_cidr" {
-  description = "CIDR blocks allowed to SSH to instances"
+  description = "Allowed SSH CIDR blocks"
   type        = string
   default     = "0.0.0.0/0"
 }
 
 variable "instance_groups" {
-  description = "Map of instance groups with their configurations"
+  description = "Instance groups configuration"
   type = map(object({
     count         = number
     ami           = string
