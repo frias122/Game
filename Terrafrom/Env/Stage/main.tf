@@ -85,7 +85,6 @@ resource "aws_instance" "group_instances" {
 
   ami           = each.value.ami
   instance_type = each.value.instance_type
-  count         = each.value.count
   subnet_id     = aws_subnet.main.id
   security_group_ids = [aws_security_group.allow_ssh.id]
 
